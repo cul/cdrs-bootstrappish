@@ -1,0 +1,6 @@
+/**
+ * This file points the site styles to the bootstrapish theme style. Place it in
+ * Site Administration > Site Settings > Site style sheet
+ *
+**/
+@import "../../plugins/themes/bootstrappish/css/bootstrap.css";
