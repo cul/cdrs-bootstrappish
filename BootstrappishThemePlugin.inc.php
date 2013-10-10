@@ -43,16 +43,15 @@ class BootstrappishThemePlugin extends ThemePlugin {
 	}
 
 	/**
-     * Add a page-specific script.
-     *
-     * Note: Implementing for OCS v2.5.3 support
-     *
-     * @param $url string the URL to be included
-     */
-    function addJavaScript($templateMgr, $url) {
-        array_push($this->javaScripts, $url);
-    }
-
+	 * Add a page-specific script.
+	 *
+	 * Note: Implementing for OCS v2.5.3 support
+	 *
+	 * @param $url string the URL to be included
+	 */
+	function addJavaScript($templateMgr, $url) {
+		array_push($this->javaScripts, $url);
+	}
 
 	/**
 	 * Activate the theme.
