@@ -49,7 +49,7 @@ class BootstrappishThemePlugin extends ThemePlugin {
 	 *
 	 * @param $url string the URL to be included
 	 */
-	function addJavaScript($templateMgr, $url) {
+	function addJavaScript($url) {
 		array_push($this->javaScripts, $url);
 	}
 
