@@ -49,8 +49,10 @@ class BootstrappishThemePlugin extends ThemePlugin {
 	 *
 	 * @param $url string the URL to be included
 	 */
-	function addJavaScript($url) {
-		array_push($this->javaScripts, $url);
+	function addJavaScript(&$templateMgr, $url) {
+
+		$extra_js = '<script type="text/javascript" src="' . Request::getBaseUrl() . '/' . $url . '"></script>';
+		$templateMgr->assign('additionalHeadData', $additionalHeadData . "\n" . $extra_js);
 	}
 
 	/**
@@ -63,14 +65,15 @@ class BootstrappishThemePlugin extends ThemePlugin {
 		$additionalHeadData = $templateMgr->get_template_vars('additionalHeadData');
 		$templateMgr->assign('additionalHeadData', $additionalHeadData."\n".$jQueryCMS);
 
-		// Method addJavaScript doesn't exists on OCS v2.3.5
+		// Method addJavaScript doesn't exists on OCS v2.3.5. 
+		// Not even the javascript array as in the case of stylesheets
 		$object_aux = ( method_exists($templateMgr, 'addJavaScript') ) ? $templateMgr : $this;
 
 		// Add in Bootstrap JS
-		$object_aux->addJavaScript('plugins/themes/bootstrappish/js/bootstrap.min.js');
+		$object_aux->addJavaScript($templateMgr, 'plugins/themes/bootstrappish/js/bootstrap.min.js');
 
 		// Add in custom JS scripts to hold miscellany
-		$object_aux->addJavaScript('plugins/themes/bootstrappish/js/custom.js');
+		$object_aux->addJavaScript($templateMgr, 'plugins/themes/bootstrappish/js/custom.js');
 		
 		if (($stylesheetFilename = $this->getStylesheetFilename()) != null) {
 			$path = Request::getBaseUrl() . '/' . $this->getPluginPath() . '/css/' . $stylesheetFilename .'?bootstrappish';
@@ -80,5 +83,4 @@ class BootstrappishThemePlugin extends ThemePlugin {
 
 	}
 }
-
 ?>
